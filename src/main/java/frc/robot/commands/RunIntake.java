@@ -5,17 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.auto;
+package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.subsystems.Drivetrain;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.Intake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class CollectionAuto1 extends ParallelCommandGroup {
-
-  public CollectionAuto1(Drivetrain drive) {
-    super(new MoveCommand(drive, 300, 0.5), new CollectionOn());
+public class RunIntake extends SequentialCommandGroup {
+  /**
+   * Creates a new runIntake.
+   */
+  public RunIntake(Intake intake) {
+    // Add your commands in the super() call, e.g.
+    // super(new FooCommand(), new BarCommand());
+    super(new DeployIntake(intake).withTimeout(1), new IntakeOn(intake));
   }
 }
